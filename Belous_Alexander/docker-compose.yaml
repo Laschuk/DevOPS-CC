@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:9.3-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=rick
+      - POSTGRES_PASSWORD=rolled
+      - POSTGRES_DB=nevergonadown
+    ports:
+      - "5432:5432"
+
+  appache:
+    image: gekore/test_apache:latest
+    restart: always
+    ports:
+      - "80:80"
+    command: httpd -D FOREGROUND
+    depends_on:
+      - "db"
