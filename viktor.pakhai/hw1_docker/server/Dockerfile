@@ -5,4 +5,4 @@ RUN pip install flask
 RUN pip install livereload
 ADD ./project/ ./
 CMD [ "python", "main.py" ]
-#EXPOSE 5000
+EXPOSE 5000
