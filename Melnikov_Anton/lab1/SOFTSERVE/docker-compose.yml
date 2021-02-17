@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  nginx:
+    build: ./Nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./Nginx:/etc/nginx/conf.d
+      - ./www:/var/www
+  #  links:
+  #    - php
+
+  php:
+    build: ./Php
+    #links:
+  #  - mysql
+    volumes:
+      - ./www:/var/www
+
+  mysql:
+    image: mysql:8
+    ports:
+      - "3306:3306"
+    volumes:
+        - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: oxlamons
+      MYSQL_USER: oxlamons

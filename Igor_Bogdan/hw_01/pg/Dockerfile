@@ -1,0 +1,5 @@
+FROM postgres:13.1-alpine
+ENV POSTGRES_USER=tst_user
+ENV POSTGRES_PASSWORD=qwerty
+ENV POSTGRES_DB=dockerdb
+EXPOSE 5432

@@ -1,0 +1,15 @@
+services:
+  db:
+    image: uname42/psgrsqltstfrdvpscc
+    restart: always
+    ports:
+      - "5432:5432"
+
+  flaskapp:
+    image: uname42/flsktstfrdvpscc
+    restart: always
+    ports:
+      - "80:8000"
+    command: gunicorn --bind 0.0.0.0:8000 -w 5 wsgi:app
+    depends_on:
+      - db
