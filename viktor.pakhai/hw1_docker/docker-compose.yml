@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+      
+  python_app:
+     build: server/
+     ports:
+      - 9090:5000    
