@@ -1,0 +1,56 @@
+pipeline {
+
+    agent { docker { image 'python:3.5.1' } }
+
+    enviroment {
+
+        PROJECT_NAME = "Python simple app"
+        OWNER_NAME = "Viktor Pakhai"
+    }
+
+    stages {
+        stage('1-clear') {
+            steps {
+                echo "Start of stage Clear"
+                sh 'python --version'
+                sh 'docker-compose up -d'
+                echo "End of stage Clear"
+            }r
+        }
+        
+        stage('2-build') {
+            steps {
+                echo "Pulling ... "
+                sh 'docker-composer build'
+                sh "dockercomposer up -d"
+                waitUntilServicesReady
+                echo "End of stage Build"
+            }
+        
+        stage('3-test') {
+            steps {
+                sh 'python --version'
+                 echo "End of stage Test"
+            }
+
+        stage('4-deploy') {
+            steps {
+                sh 'python --version'
+                 echo "End of stage Deploy"
+            }    
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
